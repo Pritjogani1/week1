@@ -1,8 +1,3 @@
 # week1
-basic html overview and build portfolio website
-
-sdgsdg
-sdg
-sdgsd
-g
-so this is done
+portfolio website link: https://pritjogani1.github.io/week1/
+  
