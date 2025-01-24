@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>prit jogani</title>
     <link rel="stylesheet" href="./portfolio/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header class="navigation">
@@ -12,14 +13,32 @@
             <div class="logo">
                 <h1>Prit Jogani</h1>
             </div>
-            <div class="menu">
+            <div class="menu" >
                 <a href="/"> Home</a>
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
-    
             </div>
+            <i class="fa-solid fa-bars "id="iconn" onclick="showmenu()"></i>
+            <script>
+                function showmenu(){
+                 document.querySelector('.sidebar').style.display = 'block';
+                }
+                function hidemenu(){
+                 document.querySelector('.sidebar').style.display = 'none';
+                }
+            </script>
+            <div>               
+                <div class="sidebar">
+                    <a href="/">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                    <i class="fa-solid fa-x cross" onclick="hidemenu()"></i>
+
+                </div>
         </nav>
     </header>
     <main>
@@ -34,7 +53,7 @@
                   <button class="ab"> <a href="#about" style="text-decoration: none;  color: black;">About me</a></button></a>
                     <button class="contact">Contact Me</button>
                 </div>
-               
+                            
             </div>
             <div class="myimg" >
                 <img src="./portfolio/images/pritjogani.jpg" class="my" alt="" width="500px" height="500px" >
@@ -118,15 +137,19 @@
                         
                     <label for="username">name:</label>
                     <input type="text" name="username" id="username" placeholder="enter name" >
+                    <span class="usererr"></span>
                     <br>
                     <label for="email">EMail:</label>
                     <input type="email" placeholder="enter email" id="email" >
+                    <span class="emialerr"></span>
                     <br>
                     <label for="phone">Phone no:</label>
                     <input type="text" name="number" id="phone" placeholder="enter phonenumber" >
+                    <span class="numbererr"></span>
                     <br>
                    <label for="textarea" >enter your quarry:</label>
                     <textarea name="" id="textarea" rows="3" cols="10"></textarea>
+                    <span class="textareaerr"></span>
                     <br>
                   <input type="submit" value="submmit" style="width: 50%; border-radius: 5px;" class="button" >
                 </div>
@@ -158,4 +181,110 @@
     </footer>
 
 </body>
+<script>
+const hamburger = document.querySelector('.icon');
+const menubar = document.querySelector('.menu');
+const cross = document.querySelector('.cross');
+hamburger.addEventListener('click',()=>{
+    hamburger.classList.toggle('active');
+    menubar.classList.toggle('active');
+    cross.classList.remove('active');
+    })
+
+
+    cross.addEventListener('click',()=>{
+    hamburger.classList.remove('active');
+    })
+
+      
+
+
+let name = document.getElementById('username');
+let email = document.getElementById('email');
+let phone = document.getElementById('phone');
+let textarea = document.getElementById('textarea');
+let button = document.querySelector('.button');
+
+let usererr = document.querySelector('.usererr');
+let emailerr = document.querySelector('.emialerr');
+let numbererr = document.querySelector('.numbererr');
+let textareaerr = document.querySelector('.textareaerr');
+
+
+name.addEventListener('focusout',()=>{
+    let nameval = name.value.trim();
+    if(nameval.length < 3){
+        usererr.innerHTML = 'name must be 3 character long';
+        name.style.border = '3px solid red';
+        name.style.backgroundColor = 'rgb(255, 0, 0, 0.2)';
+        usererr.style.color = 'red';
+    }else{
+        usererr.innerHTML = '';
+        name.style.border = '3px solid green';
+        name.style.backgroundColor = 'rgb(0, 255, 0, 0.2)';
+    }
+})
+
+email.addEventListener('focusout',()=>{
+    let emailval = email.value.trim();
+    if(emailval.includes('@') && emailval.includes('.com')){
+        emailerr.innerHTML = '';
+        email.style.border = '3px solid green';
+        email.style.backgroundColor = 'rgb(0, 255, 0, 0.2)';
+        
+    }else{
+        emailerr.innerHTML = 'email is not valid';
+        email.style.border = '3px solid red';
+        emailerr.style.color = 'red';
+        email.style.backgroundColor = 'rgb(255, 0, 0, 0.2)';
+    }
+})
+
+phone.addEventListener('focusout',()=>{
+    let phoneval = phone.value.trim();
+    if(phoneval.length < 10 && phoneval  === Number){
+        numbererr.innerHTML = 'phone number must be 10 digit long';
+        phone.style.border = '3px solid red';
+        numbererr.style.color = 'red';
+        phone.style.backgroundColor = 'rgb(255, 0, 0, 0.2)';
+    }else{
+        numbererr.innerHTML = '';
+        phone.style.border = '3px solid green';
+        phone.style.backgroundColor = 'rgb(0, 255, 0, 0.2)';
+    }
+})
+
+textarea.addEventListener('focusout',()=>{
+    let textareaval = textarea.value.trim();
+    if(textareaval.length < 10){
+        textareaerr.innerHTML = 'quarry must be 10 character long';
+        textarea.style.border = '3px solid red';
+        textarea.style.backgroundColor = 'rgb(255, 0, 0, 0.2)';
+        
+        textareaerr.style.color = 'red';
+    }else{
+        textareaerr.innerHTML = '';
+        textarea.style.border = '3px solid green';
+        textarea.style.backgroundColor = 'rgb(0, 255, 0, 0.2)';
+    }
+})
+
+button.addEventListener('click',(e)=>{
+    e.preventDefault();
+    if(name.value.trim() == '' || email.value.trim() == '' || phone.value.trim() == '' || textarea.value.trim() == ''){
+        alert('please fill the form');
+    }else{
+        alert('form submited');
+    }
+})
+
+
+
+
+
+
+
+
+</script>
+
 </html>
